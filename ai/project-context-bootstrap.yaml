@@ -1,0 +1,50 @@
+project:
+  system: HIS
+  repo_name: <repo-name>
+  module_name: <module-name>
+  role: <repo-role>
+  description: <short-description>
+  criticality: <high|medium|low>
+  legacy: <true|false>
+
+organization:
+  architecture_style: SOA
+  repo_scope: single-architecture-per-repo
+  cross_repo_assumption: forbidden
+
+tech_stack:
+  backend_language: AUTO
+  backend_framework: AUTO
+  frontend_framework: AUTO
+  orm: AUTO
+  build_tool: AUTO
+  api_styles:
+    - AUTO
+
+architecture:
+  primary_entry_points:
+    - AUTO
+  orchestration_layer:
+    - UNKNOWN
+  persistence_layer: AUTO
+  external_contracts:
+    - UNKNOWN
+
+constraints:
+  compatibility_rules:
+    - UNKNOWN
+  forbidden_changes:
+    - UNKNOWN
+
+ai_governance:
+  pilot_scope: repository-pilot-for-organization-baseline
+  use_shared_rules: true
+  workflows:
+    - implement-change
+    - fix-bug
+    - review-code
+  commit_protocol: conventional-with-ai-trailers
+  required_output:
+    - change-summary
+    - validation-summary
+    - proposed-commit-message

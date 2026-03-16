@@ -1,0 +1,53 @@
+project:
+  system: HIS
+  repo_name: <repo-name>
+  module_name: <module-name>
+  description: <short-description>
+  criticality: low|medium|high
+  legacy: true|false
+
+organization:
+  architecture_style: SOA
+  repo_scope: single-architecture-per-repo
+  cross_repo_assumption: forbidden
+
+tech_stack:
+  backend_language: Java
+  backend_framework: Grails|Spring Boot
+  frontend_framework: Flex/AIR|Angular|none
+  orm: GORM|JPA|none
+  build_tool: Gradle|Maven
+  api_styles:
+    - REST
+    - SOAP
+    - JAX-RS
+
+architecture:
+  primary_entry_points:
+    - <entry-point-1>
+    - <entry-point-2>
+  orchestration_layer: <service-layer-name>
+  persistence_layer: <persistence-style>
+  external_contracts:
+    - <contract-1>
+    - <contract-2>
+
+constraints:
+  compatibility_rules:
+    - <rule-1>
+    - <rule-2>
+  forbidden_changes:
+    - <forbidden-1>
+    - <forbidden-2>
+
+ai_governance:
+  use_shared_rules: true
+  workflows:
+    - implement-change
+    - fix-bug
+    - review-code
+  commit_protocol: conventional-with-ai-trailers
+  required_output:
+    - change-summary
+    - validation-summary
+    - proposed-commit-message
