@@ -1,0 +1,4 @@
+run_date,agent_name,agent_version,case_id,run_index,result,score,severity,notes
+2026-03-16,Copilot Agent,GPT-5.3-Codex,T01,1,pass,1.0,medium,
+2026-03-16,Copilot Agent,GPT-5.3-Codex,T01,2,partial,0.5,medium,
+2026-03-16,Copilot Agent,GPT-5.3-Codex,T01,3,pass,1.0,medium,

@@ -1,0 +1,20 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^pwsh \\./ai/governance-tests/score-results\\.ps1 -Path \\./ai/governance-tests/result-template\\.csv$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^pwsh \\./ai/governance-tests/run-governance-tests\\.ps1 -AgentName \"Copilot Agent\" -AgentVersion \"GPT-5\\.4\" -RunsPerCase 1 -PrepareOnly -ResultCsvPath \\./ai/governance-tests/runs/smoke-results\\.csv -PromptPackPath \\./ai/governance-tests/runs/smoke-prompts\\.md$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "Get-Command": true,
+        "gh": true,
+        "gemini": true,
+        "copilot": true,
+        "/^pwsh \\./ai/governance-tests/run-governance-tests-cli\\.ps1 -Provider gemini -ProviderModel gemini-3-pro-preview -CaseIds T01 -RunsPerCase 1 -TimeoutSec 300$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
