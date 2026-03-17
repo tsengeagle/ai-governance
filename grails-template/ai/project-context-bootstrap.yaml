@@ -1,0 +1,50 @@
+project:
+  system: HIS
+  repo_name: EventServer
+  module_name: EventServer
+  role: ESB
+  description: EventServer is a critical component of the Hospital Information System (HIS) that serves as an Enterprise Service Bus (ESB) to facilitate communication and data exchange between various subsystems. It ensures seamless integration and interoperability across different modules of the HIS, enabling efficient data flow and real-time processing of events. The EventServer is responsible for handling high volumes of events, ensuring reliability, scalability, and security in the healthcare environment.
+  criticality: high
+  legacy: true
+
+organization:
+  architecture_style: SOA
+  repo_scope: single-architecture-per-repo
+  cross_repo_assumption: forbidden
+
+tech_stack:
+  backend_language: AUTO
+  backend_framework: AUTO
+  frontend_framework: AUTO
+  orm: AUTO
+  build_tool: AUTO
+  api_styles:
+    - AUTO
+
+architecture:
+  primary_entry_points:
+    - AUTO
+  orchestration_layer:
+    - UNKNOWN
+  persistence_layer: AUTO
+  external_contracts:
+    - UNKNOWN
+
+constraints:
+  compatibility_rules:
+    - UNKNOWN
+  forbidden_changes:
+    - UNKNOWN
+
+ai_governance:
+  pilot_scope: repository-pilot-for-organization-baseline
+  use_shared_rules: true
+  workflows:
+    - implement-change
+    - fix-bug
+    - review-code
+  commit_protocol: conventional-with-ai-trailers
+  required_output:
+    - change-summary
+    - validation-summary
+    - proposed-commit-message
