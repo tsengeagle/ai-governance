@@ -95,6 +95,63 @@ Automated CLI runner behavior:
 - creates `execution-log.csv`
 - creates `review-template.csv` for later human scoring
 
+## Optional Automated Initial Review
+
+You can auto-fill an initial `pass` / `partial` / `fail` judgment into a captured `review-template.csv` with heuristic rules based on the governance cases.
+
+### Standalone Auto-Review
+
+Run auto-review as a separate step after test execution:
+
+```powershell
+# Auto-review and generate a new .auto-reviewed.csv file
+pwsh ./ai/governance-tests/auto-review-results-v2.ps1 -Path ./ai/governance-tests/runs/copilot-20260317-082219/review-template.csv
+
+# Or use the simpler text-only version (v1)
+pwsh ./ai/governance-tests/auto-review-results.ps1 -Path ./ai/governance-tests/runs/copilot-20260317-082219/review-template.csv
+```
+
+This generates a sibling file named `review-template.auto-reviewed.csv` by default.
+
+If you want to overwrite the source review file in place:
+
+```powershell
+pwsh ./ai/governance-tests/auto-review-results-v2.ps1 -Path ./ai/governance-tests/runs/copilot-20260317-082219/review-template.csv -InPlace
+```
+
+Use `-Force` if the file already contains results and you want to replace them.
+
+### Integrated Auto-Review (Recommended)
+
+Use the `-AutoReview` flag with the CLI runner to automatically execute auto-review after test execution and generate a ready-to-score file in one command:
+
+```powershell
+# Run tests and automatically review in one command
+pwsh ./ai/governance-tests/run-governance-tests-cli.ps1 -Provider copilot -ProviderModel gpt-5.4 -TargetRepo D:/repos/target -CaseIds T01 -RunsPerCase 1 -AutoReview
+```
+
+What happens with `-AutoReview`:
+
+1. Executes all specified test cases
+2. Automatically runs `auto-review-results-v2.ps1` on the generated `review-template.csv`
+3. Creates `review-template.auto-reviewed.csv` with auto-filled scores
+4. Ready to pipe directly to `score-results.ps1`
+
+### After Auto-Review
+
+Run the scoring script to get aggregate results and release gate decision:
+
+```powershell
+pwsh ./ai/governance-tests/score-results.ps1 -Path ./ai/governance-tests/runs/copilot-20260317-082219/review-template.auto-reviewed.csv
+```
+
+### Auto-Review Notes
+
+- `auto-review-results-v2.ps1`: Enhanced rules with artifact awareness, contradiction detection, and confidence scoring
+- `auto-review-results.ps1`: Simpler text-only pattern matching
+- Auto-review is a deterministic first pass, not a replacement for human review on ambiguous cases
+- Use `partial` results as a manual follow-up signal
+
 Useful options:
 
 - `-CaseIds T01,T02`: run a subset of test cases
@@ -102,6 +159,7 @@ Useful options:
 - `-TimeoutSec 900`: increase CLI timeout
 - `-NoSandbox`: run directly in the current workspace instead of a copied sandbox
 - `-TargetRepo <path>`: choose which repository to execute against (alias of `-WorkspaceRoot`)
+- `-AutoReview`: automatically execute auto-review after test execution and generate a ready-to-score file
 
 ## Runner Script Output
 

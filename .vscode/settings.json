@@ -15,6 +15,26 @@
         "/^pwsh \\./ai/governance-tests/run-governance-tests-cli\\.ps1 -Provider gemini -ProviderModel gemini-3-pro-preview -CaseIds T01 -RunsPerCase 1 -TimeoutSec 300$/": {
             "approve": true,
             "matchCommandLine": true
+        },
+        "/^pwsh \\./ai/governance-tests/score-results\\.ps1 -Path \\./ai/governance-tests/runs/copilot-20260317-082219/review-template\\.auto-reviewed\\.csv$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^pwsh \\./ai/governance-tests/auto-review-results-v2\\.ps1 -Path \\./ai/governance-tests/runs/copilot-20260317-082219/review-template\\.csv -OutputPath \\./ai/governance-tests/runs/copilot-20260317-082219/review-template\\.auto-reviewed\\.v2\\.csv$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^pwsh \\./ai/governance-tests/score-results\\.ps1 -Path \\./ai/governance-tests/runs/copilot-20260317-082219/review-template\\.auto-reviewed\\.v2\\.csv$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^pwsh \\./ai/governance-tests/run-governance-tests-cli\\.ps1 -Provider copilot -ProviderModel gpt-5\\.4 -TargetRepo C:/Users/tsengeagle/source/his/backend/OerPatMgmtServer -CaseIds T01 -RunsPerCase 1 -AutoReview$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^pwsh -c \"Get-Help \\./ai/governance-tests/run-governance-tests-cli\\.ps1 -Parameter AutoReview\"$/": {
+            "approve": true,
+            "matchCommandLine": true
         }
     }
 }

@@ -32,7 +32,10 @@ param(
     [int]$TimeoutSec = 600,
 
     [Parameter(Mandatory = $false)]
-    [switch]$NoSandbox
+    [switch]$NoSandbox,
+
+    [Parameter(Mandatory = $false)]
+    [switch]$AutoReview
 )
 
 Set-StrictMode -Version Latest
@@ -551,4 +554,24 @@ foreach ($case in $cases) {
 Write-Host ''
 Write-Host ("Execution log: {0}" -f $ExecutionLogPath)
 Write-Host ("Review template: {0}" -f $ReviewTemplatePath)
-Write-Host 'Next step: review the captured responses, fill result and score in the review template, then run score-results.ps1 against that file.'
+
+if ($AutoReview) {
+    Write-Host ''
+    Write-Host 'Running auto-review...'
+    
+    $autoReviewScript = Join-Path $scriptDir 'auto-review-results-v2.ps1'
+    if (-not (Test-Path -LiteralPath $autoReviewScript)) {
+        Write-Warning "Auto-review script not found: $autoReviewScript"
+    } else {
+        try {
+            $autoReviewedPath = [System.IO.Path]::ChangeExtension($ReviewTemplatePath, '.auto-reviewed.csv')
+            & $autoReviewScript -Path $ReviewTemplatePath -OutputPath $autoReviewedPath -CasesPath $CasesPath
+            Write-Host ("Auto-reviewed file: {0}" -f $autoReviewedPath)
+            Write-Host 'Next step: run score-results.ps1 to aggregate scores and determine release gate.'
+        } catch {
+            Write-Error "Auto-review failed: $($_.Exception.Message)"
+        }
+    }
+} else {
+    Write-Host 'Next step: review the captured responses manually, or run auto-review-results-v2.ps1 for an initial score, then run score-results.ps1 against that file.'
+}

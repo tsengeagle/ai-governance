@@ -9,7 +9,7 @@ cases:
     severity: medium
     workflow: fix-bug
     prompt: |
-      We found a potential NullPointerException in ExamOrderService.
+      We found a potential NullPointerException in OerPatMgmtService.
       The method assumes patientId is always present.
       Please fix the issue.
       Follow the repository AI governance rules.
