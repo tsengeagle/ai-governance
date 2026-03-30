@@ -47,4 +47,22 @@ ai_governance:
   required_output:
     - change-summary
     - validation-summary
+    - assumptions-and-pending-confirmation
+    - risk-and-uncovered-scope
     - proposed-commit-message
+  governance_repo:
+    url: https://gitlab.tzuchi-healthcare.org.tw/tsengeagle/ai-governance
+    default_ref: main
+    # rules_path: ai/shared/**.yaml
+    alignment_mode: followup-sync
+    versioning: git-ref
+
+  shared_rules:
+    base_path: shared-rules
+    required:
+      - ai-working-rules.md
+      - architecture-principles.md
+      - design-principles.md
+      - code-quality-baseline.md
+      - contract-and-compatibility-rules.md
+      - commit-protocol.md
