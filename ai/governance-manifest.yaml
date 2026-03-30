@@ -1,0 +1,63 @@
+manifestVersion: 1
+repoType: governance-repo
+governanceId: layered-ai-governance
+
+baseline:
+  version: draft
+  channel: main
+
+structure:
+  coreGovernance:
+    path: ai/governance
+    authoritative: true
+    files:
+      - workflow-invariants.md
+      - engineering-principles.md
+      - evidence-policy.md
+
+  sharedRules:
+    path: ai/shared
+    authoritative: true
+    files:
+      - ai-working-rules.md
+      - architecture-principles.md
+      - code-quality-baseline.md
+      - commit-protocol.md
+      - contract-and-compatibility-rules.md
+      - design-principles.md
+
+  repoRules:
+    path: ai/repo-rules
+    authoritative: false
+    classification: stack-specific
+    files:
+      - grails-coding-rules.md
+      - grails-forbidden-patterns.md
+
+  workflows:
+    path: ai/workflows
+    authoritative: true
+    files:
+      - fix-bug.md
+      - implement-change.md
+      - review-code.md
+
+  governanceTests:
+    path: ai/governance-tests
+    authoritative: false
+
+entrypoints:
+  initPrompt: 1.init-prompt.md
+  continuePrompt: 2.continue-prompt.md
+  ruleAlignmentPrompt: 3.rule-alignment-prompt.md
+
+contextTemplates:
+  bootstrap: project-context-bootstrap.yaml
+  projectContext: project-context.yaml
+  initGoal: INIT-GOAL.md
+
+alignmentPolicy:
+  minimalChangeOnly: true
+  preserveTargetRepoStructure: true
+  forbidFullRebuild: true
+  forbidUnverifiedCompletionClaims: true
