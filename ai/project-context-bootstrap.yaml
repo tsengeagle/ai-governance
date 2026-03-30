@@ -52,12 +52,9 @@ ai_governance:
     - proposed-commit-message
   governance_repo:
     url: https://gitlab.tzuchi-healthcare.org.tw/tsengeagle/ai-governance
-    default_ref: main
-    alignment_mode: followup-sync
-    versioning: git-ref
   shared_rules:
     mode: explicit-list
-    base_path: shared-rules
+    base_path: ai/shared
     required:
       - ai-working-rules.md
       - architecture-principles.md
