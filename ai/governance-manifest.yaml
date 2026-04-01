@@ -4,20 +4,25 @@ governanceId: layered-ai-governance
 
 baseline:
   version: draft
-  channel: main
+  defaultRefType: branch
+  defaultRef: main
+  mutability: moving
 
 structure:
   coreGovernance:
     path: ai/governance
     authoritative: true
+    applicability: all-repositories
     files:
       - workflow-invariants.md
       - engineering-principles.md
       - evidence-policy.md
+      - frontend-ui-governance.md
 
   sharedRules:
     path: ai/shared
     authoritative: true
+    applicability: all-repositories
     files:
       - ai-working-rules.md
       - architecture-principles.md
@@ -26,30 +31,56 @@ structure:
       - contract-and-compatibility-rules.md
       - design-principles.md
 
-  repoRules:
-    path: ai/repo-rules
-    authoritative: false
-    classification: stack-specific
-    files:
-      - grails-coding-rules.md
-      - grails-forbidden-patterns.md
-
   workflows:
     path: ai/workflows
     authoritative: true
+    applicability: all-repositories
     files:
       - fix-bug.md
       - implement-change.md
       - review-code.md
 
+  pathSpecificRules:
+    path: ai/path-specific
+    authoritative: true
+    applicability: conditional
+    files:
+      - frontend-ui.instructions.md
+      - frontend-microfrontend.instructions.md
+
+  stackSpecificRules:
+    path: ai/repo-rules
+    authoritative: false
+    applicability: conditional
+    classification: stack-specific
+    files:
+      - grails-coding-rules.md
+      - grails-forbidden-patterns.md
+
+  validationAssets:
+    path: ai/validation
+    authoritative: false
+    applicability: reference-only
+
   governanceTests:
     path: ai/governance-tests
     authoritative: false
+    applicability: reference-only
+
+  benchmarkAssets:
+    authoritative: false
+    applicability: reference-only
+    files:
+      - ai/agent_benchmark_rater_guide.md
+      - ai/agent_benchmark_suite.md
 
 entrypoints:
   initPrompt: 1.init-prompt.md
   continuePrompt: 2.continue-prompt.md
   ruleAlignmentPrompt: 3.rule-alignment-prompt.md
+  ruleAlignmentBaselineInstance: 3a.rule-alignment-baseline-instance.md
+  assumptionBurnDownPrompt: 4.assumption-burn-down-prompt.md
+  postInitValidationPrompt: 5.post-init-validation.md
 
 contextTemplates:
   bootstrap: project-context-bootstrap.yaml
