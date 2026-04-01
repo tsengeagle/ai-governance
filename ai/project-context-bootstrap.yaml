@@ -18,10 +18,16 @@ tech_stack:
   frontend_framework: AUTO
   orm: AUTO
   build_tool: AUTO
+  package_manager: AUTO
   api_styles:
+    - AUTO
+  test_frameworks:
+    - AUTO
+  e2e_frameworks:
     - AUTO
 
 architecture:
+  style: AUTO
   primary_entry_points:
     - AUTO
   orchestration_layer:
@@ -29,6 +35,51 @@ architecture:
   persistence_layer: AUTO
   external_contracts:
     - UNKNOWN
+
+  frontend:
+    app_type: AUTO
+    rendering_mode: AUTO
+    routing_mode: AUTO
+    state_management: AUTO
+    style_system: AUTO
+    module_boundary: AUTO
+    shared_dependencies:
+      - UNKNOWN
+    entry_points:
+      - AUTO
+    shell_integration:
+      host_shell: UNKNOWN
+      integration_contract: UNKNOWN
+      mount_rule: UNKNOWN
+      route_ownership: UNKNOWN
+
+  microfrontend:
+    role: AUTO
+    composition_mode: AUTO
+    contract_type:
+      - UNKNOWN
+    forbidden_changes:
+      - cross-microfrontend direct imports
+      - bypassing shell lifecycle contract
+      - hidden shared-state coupling
+    compatibility_rules:
+      - must preserve mount and unmount contract
+      - must preserve route ownership boundary
+      - must preserve shared dependency expectations
+
+ui_governance:
+  enabled: AUTO
+  enterprise_ui_required: true
+  enterprise_ui_source:
+    type: UNKNOWN
+    location: UNKNOWN
+    package_name: UNKNOWN
+    docs_location: UNKNOWN
+  design_tokens:
+    required: true
+    source: UNKNOWN
+  approved_wrapper_pattern: UNKNOWN
+  governance_level: enterprise-standard-required
 
 constraints:
   compatibility_rules:
