@@ -38,18 +38,6 @@ constraints:
 
 ai_governance:
   pilot_scope: repository-pilot-for-organization-baseline
-  use_shared_rules: true
-  workflows:
-    - implement-change
-    - fix-bug
-    - review-code
-  commit_protocol: conventional-with-ai-trailers
-  required_output:
-    - change-summary
-    - validation-summary
-    - assumptions-and-pending-confirmation
-    - risk-and-uncovered-scope
-    - proposed-commit-message
 
   governance_repo:
     url: https://gitlab.tzuchi-healthcare.org.tw/tsengeagle/ai-governance
@@ -71,6 +59,7 @@ ai_governance:
       - fix-bug.md
       - review-code.md
 
+  use_shared_rules: true
   shared_rules:
     mode: explicit-list
     base_path: ai/shared
@@ -81,3 +70,17 @@ ai_governance:
       - code-quality-baseline.md
       - contract-and-compatibility-rules.md
       - commit-protocol.md
+
+  workflows:
+    - implement-change
+    - fix-bug
+    - review-code
+
+  commit_protocol: conventional-with-ai-trailers
+
+  required_output:
+    - change-summary
+    - validation-summary
+    - assumptions-and-pending-confirmation
+    - risk-and-uncovered-scope
+    - proposed-commit-message
