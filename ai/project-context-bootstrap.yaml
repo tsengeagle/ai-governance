@@ -50,8 +50,27 @@ ai_governance:
     - assumptions-and-pending-confirmation
     - risk-and-uncovered-scope
     - proposed-commit-message
+
   governance_repo:
     url: https://gitlab.tzuchi-healthcare.org.tw/tsengeagle/ai-governance
+    default_ref: main
+
+  governance_rules:
+    mode: explicit-list
+    base_path: ai/governance
+    required:
+      - workflow-invariants.md
+      - engineering-principles.md
+      - evidence-policy.md
+
+  workflow_rules:
+    mode: explicit-list
+    base_path: ai/workflow
+    required:
+      - implement-change.md
+      - fix-bug.md
+      - review-code.md
+
   shared_rules:
     mode: explicit-list
     base_path: ai/shared
