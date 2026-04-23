@@ -1,0 +1,244 @@
+project:
+  system: HIS
+  repo_name: <repo-name>
+  module_name: <module-name>
+  role: <frontend-role>
+  description: <short-description>
+  criticality: <high|medium|low>
+  legacy: <true|false>
+
+organization:
+  # 組織背景，不是 repo 本身前端型態
+  architecture_style: SOA
+  repo_scope: single-architecture-per-repo
+  cross_repo_assumption: forbidden
+
+tech_stack:
+  backend_language: AUTO
+  backend_framework: AUTO
+  frontend_framework: AUTO
+  orm: AUTO
+  build_tool: AUTO
+  package_manager: AUTO
+  api_styles:
+    - AUTO
+  test_frameworks:
+    - AUTO
+  e2e_frameworks:
+    - AUTO
+
+architecture:
+  # 前端 repo 固定填 frontend
+  style: frontend
+
+  primary_entry_points:
+    - AUTO
+
+  orchestration_layer:
+    - UNKNOWN
+
+  persistence_layer: AUTO
+
+  external_contracts:
+    - UNKNOWN
+
+  frontend:
+    # SPA:
+    #   standalone-frontend
+    #
+    # portal 類前端 shell repo:
+    #   microfrontend-shell
+    #
+    # 微前端 module:
+    #   microfrontend-child
+    app_type: AUTO
+
+    # 常見值：
+    # - client-side-rendering
+    # - server-side-rendering
+    rendering_mode: AUTO
+
+    # SPA:
+    #   application-owned
+    #
+    # portal shell:
+    #   shell-owned
+    #
+    # 微前端 module:
+    #   sub-route-owned
+    routing_mode: AUTO
+
+    # 例如 ngrx / zustand / pinia / redux / UNKNOWN
+    state_management: AUTO
+
+    # 例如 enterprise-design-system / local-styles / UNKNOWN
+    style_system: AUTO
+
+    # SPA:
+    #   single-frontend-app
+    #
+    # portal shell:
+    #   host-shell
+    #
+    # 微前端 module:
+    #   isolated-microfrontend
+    module_boundary: AUTO
+
+    shared_dependencies:
+      - UNKNOWN
+
+    entry_points:
+      - AUTO
+
+    shell_integration:
+      # SPA:
+      #   通常 UNKNOWN
+      #
+      # portal shell:
+      #   通常 UNKNOWN，因為自己就是 host
+      #
+      # 微前端 module:
+      #   可填 portal 名稱，例如 tzuchi-portal
+      host_shell: UNKNOWN
+
+      # SPA:
+      #   通常 UNKNOWN
+      #
+      # portal shell:
+      #   可為 host-shell
+      #
+      # 微前端 module:
+      #   常見為 module-federation / hosted-module-contract / UNKNOWN
+      integration_contract: UNKNOWN
+
+      # SPA:
+      #   通常 UNKNOWN
+      #
+      # portal shell:
+      #   host-managed-module-mount
+      #
+      # 微前端 module:
+      #   shell-driven-mount
+      mount_rule: UNKNOWN
+
+      # SPA:
+      #   full-application-owned
+      #
+      # portal shell:
+      #   portal-owned-top-level-routes
+      #
+      # 微前端 module:
+      #   owned-subtree-only
+      route_ownership: UNKNOWN
+
+  microfrontend:
+    # SPA:
+    #   UNKNOWN
+    #
+    # portal shell:
+    #   shell
+    #
+    # 微前端 module:
+    #   child-module
+    role: AUTO
+
+    # SPA:
+    #   UNKNOWN
+    #
+    # portal shell:
+    #   host-shell
+    #
+    # 微前端 module:
+    #   shell-hosted
+    composition_mode: AUTO
+
+    contract_type:
+      - UNKNOWN
+
+    forbidden_changes:
+      - cross-microfrontend direct imports
+      - bypassing shell lifecycle contract
+      - hidden shared-state coupling
+
+    compatibility_rules:
+      - must preserve mount and unmount contract
+      - must preserve route ownership boundary
+      - must preserve shared dependency expectations
+
+ui_governance:
+  # 若可確認有企業 UI 規範，填 true
+  # 若 init 前無法證實，可先 AUTO
+  enabled: AUTO
+
+  enterprise_ui_required: true
+
+  enterprise_ui_source:
+    # 例如 internal-package / internal-repo / storybook / UNKNOWN
+    type: UNKNOWN
+    location: UNKNOWN
+    package_name: UNKNOWN
+    docs_location: UNKNOWN
+
+  design_tokens:
+    required: true
+    source: UNKNOWN
+
+  approved_wrapper_pattern: UNKNOWN
+
+  governance_level: enterprise-standard-required
+
+constraints:
+  compatibility_rules:
+    - UNKNOWN
+  forbidden_changes:
+    - UNKNOWN
+
+ai_governance:
+  pilot_scope: repository-pilot-for-organization-baseline
+
+  governance_repo:
+    url: https://gitlab.tzuchi-healthcare.org.tw/tsengeagle/ai-governance
+    default_ref: main
+
+  governance_rules:
+    mode: explicit-list
+    base_path: ai/governance
+    required:
+      - workflow-invariants.md
+      - engineering-principles.md
+      - evidence-policy.md
+
+  workflow_rules:
+    mode: explicit-list
+    base_path: ai/workflows
+    required:
+      - implement-change.md
+      - fix-bug.md
+      - review-code.md
+
+  use_shared_rules: true
+
+  shared_rules:
+    mode: explicit-list
+    base_path: ai/shared
+    required:
+      - ai-working-rules.md
+      - architecture-principles.md
+      - design-principles.md
+      - code-quality-baseline.md
+      - contract-and-compatibility-rules.md
+      - commit-protocol.md
+
+  workflows:
+    - implement-change
+    - fix-bug
+    - review-code
+
+  commit_protocol: conventional-with-ai-trailers
+
+  required_output:
+    - change-summary
+    - validation-summary
+    - assumptions-and-pending-confirmation
+    - risk-and-uncovered-scope
+    - proposed-commit-message
