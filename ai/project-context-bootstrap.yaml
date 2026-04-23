@@ -101,6 +101,7 @@ ai_governance:
       - workflow-invariants.md
       - engineering-principles.md
       - evidence-policy.md
+      - validation-and-acceptance-principles.md
 
   workflow_rules:
     mode: explicit-list
@@ -109,6 +110,7 @@ ai_governance:
       - implement-change.md
       - fix-bug.md
       - review-code.md
+      - validate-and-accept.md
 
   use_shared_rules: true
   shared_rules:
@@ -126,6 +128,7 @@ ai_governance:
     - implement-change
     - fix-bug
     - review-code
+    - validate-and-accept
 
   commit_protocol: conventional-with-ai-trailers
 
